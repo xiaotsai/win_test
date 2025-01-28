@@ -18,7 +18,7 @@ properties:
           $logFile = Join-Path $logDir "log.txt"
 
           
-          $user = (Get-WmiObject -Class Win32_ComputerSystem).UserName
+          $user = (Get-CimInstance -ClassName Win32_ComputerSystem).UserName
           Set-Content $logFile "Whoami："
           Add-Content $logFile $user
 
