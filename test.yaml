@@ -18,13 +18,13 @@ properties:
           $logFile = Join-Path $logDir "log.txt"
 
           
-          $whoami = whoami
-          Set-Content $logFile "Whoami 結果："
-          Add-Content $logFile $whoami
+          $user = (Get-WmiObject -Class Win32_ComputerSystem).UserName
+          Set-Content $logFile "Whoami："
+          Add-Content $logFile $user
 
           
           $systeminfo = systeminfo
-          Add-Content $logFile "`nSysteminfo 結果："
+          Add-Content $logFile "`nSysteminfo："
           Add-Content $logFile $systeminfo
 
   configurationVersion: 0.2.0
