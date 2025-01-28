@@ -1,0 +1,30 @@
+properties:
+  resources:
+    - resource: PSDscResources/Script
+      id: myAppConfig
+      directives:
+        description: Run Powershell Command
+        allowPrerelease: true
+      settings:
+        GetScript: |
+            #"state"
+        TestScript: |
+            return $false
+        SetScript: |
+         $logDir = "C:\Samples\winget"
+          if (-not (Test-Path $logDir)) {
+              New-Item -ItemType Directory -Path $logDir -Force
+          }
+          $logFile = Join-Path $logDir "log.txt"
+
+          
+          $whoami = whoami
+          Set-Content $logFile "Whoami 結果："
+          Add-Content $logFile $whoami
+
+          
+          $systeminfo = systeminfo
+          Add-Content $logFile "`nSysteminfo 結果："
+          Add-Content $logFile $systeminfo
+
+  configurationVersion: 0.2.0
